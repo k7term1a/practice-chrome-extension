@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <title>New Tab</title>
-    <link rel="stylesheet" href="newtab.css">
-    <body>
-        <input type="file" id="file-uploader" accept="video/*" style="position: absolute; top: 10px; left: 10px; z-index: 1;">
-        <video muted autoplay loop playsinline id="wallpaper">
-            <source src="wallpaper.mp4" type="video/mp4">
-        </video>
-        <script src="newtab.js"></script>
-    </body>
+<title>New Tab</title>
+<link rel="stylesheet" href="newtab.css">
+
+<body>
+    <div id="utils">
+        <div id="upload-icon">
+            <label for="file-uploader">
+                <img src="statics/upload-button.png" alt="uploder icon">
+            </label>
+        </div>
+        <input type="file" id="file-uploader" accept="video/*">
+        <i class="fas fa-camera fa-2x"></i>
+    </div>
+    <video muted autoplay loop playsinline id="wallpaper">
+        <source src="wallpaper.mp4" type="video/mp4">
+    </video>
+    <script src="newtab.js"></script>
+</body>
+
 </html>

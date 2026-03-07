@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
@@ -14,4 +14,46 @@ video {
     height: 100%;
     object-position: 50% 50%;
     transform-origin: 50% 50%;
+}
+
+#upload-icon {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    position: absolute;
+    left: -50px;
+    transition: left 0.5s cubic-bezier(0.5, 0.5, 0, 1);
+}
+
+#upload-icon label {
+    width: 0;
+    height: 0;
+}
+
+#upload-icon img{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#file-uploader {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    display: none;
+}
+
+#utils {
+    height: 100%;
+    width: 10%;
+    position: absolute;
+    padding: 10px;
+}
+
+#utils:hover #upload-icon {
+    left: 10px;
 }
