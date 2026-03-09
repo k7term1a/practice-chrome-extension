@@ -6,7 +6,7 @@ body {
     overflow: hidden;
 }
 
-video {
+#video-wallpaper, #image-wallpaper {
     position: fixed;
     object-fit: cover;
     z-index: -1;

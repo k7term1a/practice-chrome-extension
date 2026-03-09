@@ -10,12 +10,13 @@
                 <img src="statics/upload-button.png" alt="uploder icon">
             </label>
         </div>
-        <input type="file" id="file-uploader" accept="video/*">
+        <input type="file" id="file-uploader" accept=".mp4,.png,.jpg,.jpeg">
         <i class="fas fa-camera fa-2x"></i>
     </div>
-    <video muted autoplay loop playsinline id="wallpaper">
+    <video muted autoplay loop playsinline id="video-wallpaper">
         <source src="wallpaper.mp4" type="video/mp4">
     </video>
+    <img id="image-wallpaper" style="display:none" src="statics/upload-button.png" alt="wallpaper" >
     <script src="newtab.js"></script>
 </body>
 

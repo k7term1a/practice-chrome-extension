@@ -10,39 +10,50 @@ async function fileToBase64(file) {
 
 async function base64ToFile(base64String) {
     const response = await fetch(base64String);
-    const blob = await response.blob();
-    return new File([blob], 'video.mp4', { type: 'video/mp4' });
+    return response.blob();
 }
 
 async function changeBackground() {
     console.log('changing background');
     await chrome.storage.local.get(['background'], (data) => {
-        const videoElement = document.querySelector('#wallpaper');
-        const videoSource = document.querySelector('#wallpaper > source');
-        if (data.background) {
-            console.log(data.background);
-            base64ToFile(data.background).then(video => {
-                console.log(video);
-                videoBlob = new Blob([video], { type: 'video/mp4' });
-                videoURL = URL.createObjectURL(videoBlob);
-                videoSource.src = videoURL;
-                videoElement.load(); // load the new video source
+        base64ToFile(data.background).then(blob => {
+            console.log(blob);
+            blobURL = URL.createObjectURL(new Blob([blob]));
+            // could not use blobURL = URL.createObjectURL(blob);
+            chrome.storage.local.get(['backgroundType'], (data) => {
+                const imageElement = document.querySelector('#image-wallpaper');
+                const videoElement = document.querySelector('#video-wallpaper');
+                const videoSource = document.querySelector('#video-wallpaper > source');
+
+                if (data.backgroundType === 'image') {
+                    imageElement.src = blobURL; 
+                    imageElement.style.display = '';
+                    videoElement.style.display = 'none';
+                    videoSource.src = "";
+                    videoElement.load(); // load the new video source
+                } else {
+                    imageElement.style.display = 'none';
+                    videoElement.style.display = '';
+                    videoSource.src = blobURL;
+                    videoElement.load(); // load the new video source
+                }
             });
-        }
-        else {
-            console.log('no video')
-            videoElement.src = 'wallpaper.mp4'; // default video
-        }
-    })
+        });
+    });
+
 }
 
 chrome.storage.local.clear();
 
 fileUploader.addEventListener('change', (e) => {
     console.log(e.target.files[0]); // get list of file objects
-    fileToBase64(e.target.files[0]).then(videoBase64 => {
-        console.log(videoBase64); // get base64 string of the video
-        chrome.storage.local.set({background: videoBase64});
+    if (e.target.files[0].type.startsWith('image/')) {
+        chrome.storage.local.set({backgroundType: 'image'});
+    } else {
+        chrome.storage.local.set({backgroundType: 'video'});
+    }
+    fileToBase64(e.target.files[0]).then(base64String => {
+        chrome.storage.local.set({background: base64String});
         changeBackground();
     });
 });
