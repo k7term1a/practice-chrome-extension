@@ -5,19 +5,26 @@
 
 <body>
     <div id="utils">
-        <div id="upload-icon">
-            <label for="file-uploader">
-                <img src="statics/upload-button.png" alt="uploder icon">
+        <div id="upload-icon" class="util">
+            <label for="file-uploader" class="util-block">
+                <img src="statics/upload.png" alt="uploder icon">
             </label>
+            <input type="file" id="file-uploader" accept=".mp4,.png,.jpg,.jpeg">
         </div>
-        <input type="file" id="file-uploader" accept=".mp4,.png,.jpg,.jpeg">
-        <i class="fas fa-camera fa-2x"></i>
+
+        <div id="bookmark-icon" class="util">
+            <div class="util-block">
+                <img class="util-icon" src="statics/bookmark.png" alt="bookmark icon">
+            </div>
+        </div>
+
     </div>
     <video muted autoplay loop playsinline id="video-wallpaper">
         <source src="wallpaper.mp4" type="video/mp4">
     </video>
-    <img id="image-wallpaper" style="display:none" src="statics/upload-button.png" alt="wallpaper" >
+    <!-- <img id="image-wallpaper" style="display:none" src="statics/upload.png" alt="wallpaper" > -->
     <script src="newtab.js"></script>
+    <script src="bookmark.js"></script>
 </body>
 
 </html>

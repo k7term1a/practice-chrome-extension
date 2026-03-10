@@ -16,24 +16,31 @@ body {
     transform-origin: 50% 50%;
 }
 
-#upload-icon {
+.util {
     width: 40px;
     height: 40px;
     padding: 4px;
-    border-radius: 4px;
+    margin: 20px;
+    border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.5);
 
-    position: absolute;
-    left: -50px;
-    transition: left 0.5s cubic-bezier(0.5, 0.5, 0, 1);
+    position: relative;
+    left: -100%;
+    animation: hide 2s cubic-bezier(0.5, 0.5, 0, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#upload-icon label {
-    width: 0;
-    height: 0;
+.util-block {
+    display: flex;
+    place-content: center;
+    width: 70%;
+    height: 70%;
 }
 
-#upload-icon img{
+.util-icon{
     cursor: pointer;
     width: 100%;
     height: 100%;
@@ -52,8 +59,34 @@ body {
     width: 10%;
     position: absolute;
     padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
-#utils:hover #upload-icon {
-    left: 10px;
+#utils:hover .util {
+    animation: show 1s cubic-bezier(0.5, 0.5, 0, 1);
+    left: 0px;
+}
+
+@keyframes show {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes hide {
+    0% {
+        left: 0px;
+    }
+    50% {
+        left: 0px;
+    }
+    100% {
+        left: -100%;
+    }
 }
